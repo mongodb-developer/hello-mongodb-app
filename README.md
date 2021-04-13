@@ -1,3 +1,14 @@
+# WORK IN PROGRESS
+
+# Building and running the app locally with Docker
+
+```bash
+docker build -t <repo>/hello-mongodb-app .
+docker run -it -p 8000:80 <repo>/hello-mongodb-app
+```
+
+
+
 # leafygreen-ui-starter-kit
 
 A (slightly) opinionated starter kit for making applications with [@leafygreen-ui](https://github.com/mongodb/leafygreen-ui).
