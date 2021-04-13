@@ -2,11 +2,13 @@
 
 # Building and running the app locally with Docker
 
+Clone this repository, then 
+
 ```bash
 docker build -t <repo>/hello-mongodb-app .
 docker run -it -p 8000:80 <repo>/hello-mongodb-app
 ```
-
+Your app will be running on [http://localhost:8000](http://localhost:8000)
 
 
 # leafygreen-ui-starter-kit
