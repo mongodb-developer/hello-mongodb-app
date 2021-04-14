@@ -16,16 +16,31 @@ production systems.
 
 ## Getting started
 
-**1. add MongoDB username and password to `settings.cfg`
-**2. run `export APPLICATION_SETTINGS=settings.cfg`
+1. Add MongoDB username and password to `settings.cfg`
+
+### To run service in a development environment:
+1 Run `export APPLICATION_SETTINGS=settings.cfg`
 
 ```bash
-$cd service
-
-$python app.py
+cd service
+python app.py
 ```
 
-To test run this command
-X-MongoDB-Database and X-MongoDB-Collection must be set to query right MongoDB
-`curl http://0.0.0.0:5274/ -d '{"rated": "NOT RATED"}' -H "Content-Type: application/json" -H "X-MongoDB-Database:sample_mflix" -H "X-MongoDB-Collection:movies" --request GET`
+### Docker Instructions
+```bash
+cd service
+docker build -t <repo>/hello-mongodb-svc .
+docker run -it -p 5274:5274 <repo>/hello-mongodb-svc
+```
 
+### Simple test
+
+Set `X-MongoDB-Database` and `X-MongoDB-Collection` to the right MongoDB Database and Collection
+```bash 
+curl http://0.0.0.0:5274/ -d '{"rated": "NOT RATED"}' \
+    -H "Content-Type: application/json" \
+    -H "X-MongoDB-Database:sample_mflix" \
+    -H "X-MongoDB-Collection:movies"
+```
+
+List of movies will be returned in the terminal

@@ -48,7 +48,7 @@ sUri = os.environ.get('MONGODB_URI')
 logger.debug( f'Read environment MONGODB_URI: {sUri}' )
 
 # Atlas Connection string
-mongo = MongoClient(f'mongodb+srv://{app.config["MONGODB_USER"]}:{app.config["MONGODB_PASSWORD"]}@movies.gepw4.mongodb.net/moves?retryWrites=true&w=majority')
+mongo = MongoClient(f'mongodb+srv://{app.config["MONGODB_USER"]}:{app.config["MONGODB_PASSWORD"]}@{app.config["MONGODB_SRV"]}')
 # mongo = MongoClient( sUri)
 
 DEFAULT_DB = 'sample_mflix'
