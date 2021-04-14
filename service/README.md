@@ -16,9 +16,16 @@ production systems.
 
 ## Getting started
 
+**1. add MongoDB username and password to `settings.cfg`
+**2. run `export APPLICATION_SETTINGS=settings.cfg`
 
 ```bash
 $cd service
 
+$python app.py
+```
 
+To test run this command
+X-MongoDB-Database and X-MongoDB-Collection must be set to query right MongoDB
+`curl http://0.0.0.0:5274/ -d '{"rated": "NOT RATED"}' -H "Content-Type: application/json" -H "X-MongoDB-Database:sample_mflix" -H "X-MongoDB-Collection:movies" --request GET`
 

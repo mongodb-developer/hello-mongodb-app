@@ -34,6 +34,8 @@ logger.debug( '{os.environ}' )
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+app.config.from_envvar('APPLICATION_SETTINGS')
+
 ns_file = '/var/run/secrets/kubernetes.io/serviceaccount/namespace'
 try:
   with open(ns_file,'r') as f:
@@ -44,8 +46,9 @@ except Exception as err:
 
 sUri = os.environ.get('MONGODB_URI')
 logger.debug( f'Read environment MONGODB_URI: {sUri}' )
+
 # Atlas Connection string
-mongo = MongoClient('mongodb+srv://user:YOcTHF5syrSFg3mv@movies.gepw4.mongodb.net/moves?retryWrites=true&w=majority')
+mongo = MongoClient(f'mongodb+srv://{app.config["MONGODB_USER"]}:{app.config["MONGODB_PASSWORD"]}@movies.gepw4.mongodb.net/moves?retryWrites=true&w=majority')
 # mongo = MongoClient( sUri)
 
 DEFAULT_DB = 'sample_mflix'
