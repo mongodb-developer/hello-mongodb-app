@@ -6,6 +6,17 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
+import SearchPage from './components/SearchPage';
+
+import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
+
+const header = (
+  <div>
+    <strong>Polymorphism</strong>
+    <br />
+    <small>(content header)</small>
+  </div>
+);
 
 const globalStyles = css`
   *, *:before, *:after {
@@ -28,6 +39,17 @@ const globalStyles = css`
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
+  }
+
+  .grid-container {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  height: 100vh;
+  }
+
+  .content {
+  overflow-x: hidden;
+  overflow-y: scroll;
   }
 `;
 
@@ -84,6 +106,8 @@ const navigationLinkStyles = css`
 const NavigationLink = (props) => <NavLink {...props} css={navigationLinkStyles} />;
 
 function App() {
+
+
   return (
     <Router>
       <div className="App">
@@ -106,12 +130,41 @@ function App() {
           </Container>
         </Header>
 
-        <Container css={css`margin-top: 48px;`}>
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/about" component={AboutPage} />
-          </Switch>
-        </Container>
+
+        <div className="grid-container">
+            <SideNav>
+                <SideNavGroup header="Playbook">
+                    <SideNavItem active>Active State</SideNavItem>
+                    <SideNavItem disabled>Disabled State</SideNavItem>
+                </SideNavGroup>
+
+                <SideNavGroup header={header}>
+                    <SideNavItem>Default root element (button)</SideNavItem>
+                    <SideNavItem href="/">Anchor root element</SideNavItem>
+                    <SideNavItem as="label" htmlFor="docs-input">
+                        Custom root element (label)
+                    <input
+                      id="docs-input"
+                      type="text"
+                      value=""
+                      placeholder="placeholder text"
+                      disabled
+                    />
+                  </SideNavItem>
+                </SideNavGroup>
+            </SideNav>
+
+            <div className="content">
+                <Container css={css`margin-top: 48px;`}>
+                  <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Route path="/search" component={SearchPage} />
+                    <Route path="/about" component={AboutPage} />
+                  </Switch>
+                </Container>
+            </div>
+        </div>
+
       </div>
     </Router>
   );

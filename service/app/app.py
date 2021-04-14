@@ -2,10 +2,10 @@ import os
 import sys
 import logging
 import uuid
-import ssl 
+import ssl
 # import dns
 
-import sys; 
+import sys;
 print (sys.path)
 from flask import Flask
 from flask import request
@@ -14,6 +14,7 @@ from bson.json_util import loads
 from bson.json_util import dumps, RELAXED_JSON_OPTIONS
 #from kubernetes import client, config, watch
 from flask_httpauth import HTTPBasicAuth
+from flask_cors import CORS
 
 
 # from dns import resolver
@@ -32,6 +33,12 @@ logger.addHandler(handler)
 logger.debug( '{os.environ}' )
 
 app = Flask(__name__)
+CORS(app)
+cors = CORS(app, resource={
+    r"/*":{
+        "origins":"*"
+    }
+})
 auth = HTTPBasicAuth()
 
 app.config.from_envvar('APPLICATION_SETTINGS')
@@ -58,7 +65,7 @@ CURRENT_COLL = DEFAULT_COLL
 logger.warning(f'initialize/CURRENT_DB:{CURRENT_DB} CURRENT_COLL:{CURRENT_COLL}')
 logger.info(f'mongo.server_info():{mongo.server_info()}')
 
-                               
+
 @auth.verify_password
 def verify_password(username, password):
   potential_key = { '_id' : '{}:{}'.format(username,password) }
@@ -89,7 +96,7 @@ def generate_id():
 
 @app.route('/', methods = ['GET'])
 def query():
-  
+
   logger.debug(f'Request JSON {request.json}')
 
   set_current_collection()
@@ -99,22 +106,22 @@ def query():
 # @app.route('/', methods = ['GET'])
 # #@auth.login_required
 # def get():
-#   """ Query for documents. 
+#   """ Query for documents.
 #   Expects request arguments with query document.
 #   Example(s):
 #   $curl -X PUT -u <username:apikey> http:/product-service/?key1=value1&key2=value2
 #   """
-#   set_current_collection() 
+#   set_current_collection()
 #   query = request.args
 #   find_q = {}
- 
+
 #   if query:
 #     if 'filter' in query:
 #       return filters()
 #     if 'all' in query:
 #       query = {}
 #     if 'brand' in query:
-#       find_q['brand'] = { "$in" : query['brand'].split(',') } 
+#       find_q['brand'] = { "$in" : query['brand'].split(',') }
 #       logger.info(f'rewrote \'brand\' query {find_q}')
 #     if 'categories' in query:
 #       find_q['categories'] = {}
@@ -132,14 +139,14 @@ def query():
 # @app.route('/', methods = ['POST'])
 # #@auth.login_required
 # def post():
-#   """ Insert a document. 
+#   """ Insert a document.
 #   Expects JSON body with document.
 #   Example(s):
 #   $curl -X PUT -u <username:apikey> -d '{ "key1":"value1"}' http:/product-service/
 #   """
-  
-#   set_current_collection() 
-#   product = request.get_json(force=True) 
+
+#   set_current_collection()
+#   product = request.get_json(force=True)
 #   product['_id'] = generate_id()
 #   logger.info(f'POST product:{product}')
 #   result = mongo[CURRENT_DB][CURRENT_COLL].insert_one( product )
@@ -148,21 +155,21 @@ def query():
 # @app.route('/<document_id>', methods = ['PUT'])
 # #@auth.login_required
 # def put(document_id):
-#   """ Update/upsert a document. 
+#   """ Update/upsert a document.
 #   Expects JSON body with $set-style MQL update.
 #   Example(s):
 #   To update the document with _id = 1234,
 #   $curl -X PUT -u <username:apikey> -d '{"$set": { "key1":"value1"}}' http:/product-service/1234
 #   """
-  
+
 #   if not document_id:
 #    return (f'Request paramenter \`document_id\` REQUIRED, detected {document_id}',500)
-#   product = request.get_json(force=True) 
+#   product = request.get_json(force=True)
 #   logger.info(f'PUT product:{product}')
 #   update = { "$set" : {} }
 #   for key in product.keys():
 #     update['$set'][key] = product[key]
-#   set_current_collection() 
+#   set_current_collection()
 #   logger.info(f'PUT update:{update}')
 #   result = mongo[CURRENT_DB][CURRENT_COLL].update_one({ '_id' : document_id }, update, upsert=True)
 #   return (dumps_result(result,method='put'),200)
@@ -171,7 +178,7 @@ def query():
 # @app.route('/<document_id>', methods = ['DELETE'])
 # #@auth.login_required
 # def delete(document_id=''):
-#   """ Delete a document. 
+#   """ Delete a document.
 #       Expects request path value for _id.
 #       Example(s):
 #       To delete the document with _id = 1234,
@@ -179,7 +186,7 @@ def query():
 #   """
 #   if not document_id:
 #     product = request.get_json(force=True)
-    
+
 #     logger.debug(f'delete/product:{product}')
 #     product = loads(request.data)
 #     logger.debug(f'delete/product:{product}')
