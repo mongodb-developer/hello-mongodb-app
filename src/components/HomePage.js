@@ -5,6 +5,7 @@ import Movies from './movies';
 export default function HomePage() {
 
     return <div>
+
         <Movies />
         </div>
     }

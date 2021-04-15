@@ -6,10 +6,14 @@ class Movies extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            movies: []
+            movies: [],
+            service: process.env.REACT_APP_MOVIES_SERVICE_URL
         };
+        console.log("Movies state: " + this.state)
+    }
 
-        fetch('http://localhost:5000/')
+    componentDidMount() {
+        fetch(this.state.service)
         .then(res => res.json())
         .then((data) => {
           this.setState({ movies: data })
