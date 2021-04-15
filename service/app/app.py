@@ -111,7 +111,7 @@ def mognodb_info():
   set_current_collection()
 
   info = { "dbstats" :  mongo[CURRENT_DB].command("dbstats"),
-           "collstats" : mongo[CURRENT_DB].command("collstats",CURRENT_COLL),
+          "collstats" : mongo[CURRENT_DB].command("collstats", CURRENT_COLL, scale=1024*1024),
            "atlas" : { "a" : 1, "name" : "stuff about atlas connection" }
     }
   logger.debug(f"info:{info}")

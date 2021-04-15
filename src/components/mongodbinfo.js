@@ -31,7 +31,7 @@ class MongoDBInfo extends React.Component {
             <div>
           <span style={{ margin: spacing[4] }}>
           <span style={{ color: uiColors.gray.light1 }}>COLLECTION SIZE:</span>
-          <span style={{ "font-weight": 'bold' }}>{ this.state.minfo.collstats.size} </span>
+          <span style={{ "font-weight": 'bold' }}>{ this.state.minfo.collstats.size}MB</span>
             </span>
 
           <span style={{ margin: spacing[4] }}>
@@ -41,7 +41,7 @@ class MongoDBInfo extends React.Component {
 
           <span style={{ margin: spacing[4] }}>
           <span style={{ color: uiColors.gray.light1 }}>INDEX TOTAL SIZE:</span>
-          <span style={{ "font-weight": 'bold' }}>{ this.state.minfo.collstats.totalIndexSize} </span>
+          <span style={{ "font-weight": 'bold' }}>{ this.state.minfo.collstats.totalIndexSize}MB</span>
             </span>
 
               </div>
