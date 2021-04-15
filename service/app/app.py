@@ -87,7 +87,7 @@ def set_current_collection():
 def generate_id():
   return str(uuid.uuid4())
 
-@app.route('/', methods = ['GET'])
+@app.route('/find', methods = ['GET'])
 def query():
   
   logger.debug(f'Request JSON {request.json}')
@@ -95,6 +95,26 @@ def query():
   set_current_collection()
 
   return (dumps(list(mongo[CURRENT_DB][CURRENT_COLL].find(request.json).limit(100))), 200)
+
+@app.route('/dbStats', methods = ['GET'])
+def dbStats(): 
+  
+  
+  db = mongo[CURRENT_DB]
+
+  set_current_collection()
+
+  return  db.command("dbstats")
+
+@app.route('/aggregation', methods = ['GET'])
+def aggregation(): 
+  
+  logger.debug(f'Request JSON {request.json}')
+
+  set_current_collection()
+
+  return (dumps(list(mongo[CURRENT_DB][CURRENT_COLL].aggregation(request.json).limit(100))), 200)
+
 
 # @app.route('/', methods = ['GET'])
 # #@auth.login_required
