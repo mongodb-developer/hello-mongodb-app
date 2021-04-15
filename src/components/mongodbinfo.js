@@ -1,5 +1,5 @@
 import React from 'react'
-import { spacing, fontFamilies, breakpoints } from '@leafygreen-ui/tokens';
+import { spacing } from '@leafygreen-ui/tokens';
 import { uiColors } from '@leafygreen-ui/palette';
 
 class MongoDBInfo extends React.Component {
