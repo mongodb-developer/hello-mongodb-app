@@ -31,18 +31,20 @@ class Movies extends React.Component {
       columns={
         <HeaderRow>
           <TableHeader key="title" label="Title" dataType="string" />
-          <TableHeader key="director" label="Director" dataType="string" />
-          <TableHeader key="year" label="Year" dataType="number" />
+          <TableHeader key="directors" label="Directors" dataType="string" />
+          <TableHeader key="year" label="Year" dataType="string" />
           <TableHeader key="cast" label="Cast" dataType="string" />
+          <TableHeader key="plot" label="Plot" dataType="string" />
         </HeaderRow>
       }
     >
       {({ datum }) => (
         <Row key={datum._id}>
           <Cell>{datum.title}</Cell>
-          <Cell>{datum.director}</Cell>
+          <Cell>{datum.directors}</Cell>
           <Cell>{datum.year}</Cell>
           <Cell>{datum.cast}</Cell>
+          <Cell>{datum.plot}</Cell>
         </Row>
       )}
     </Table>

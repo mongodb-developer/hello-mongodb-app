@@ -103,6 +103,20 @@ def query():
 
   return (dumps(list(mongo[CURRENT_DB][CURRENT_COLL].find(request.json).limit(100))), 200)
 
+@app.route('/mongodb-info', methods = ['GET'])
+def mognodb_info():
+
+  logger.debug(f'mongodb_info {request.json}')
+
+  set_current_collection()
+
+  info = { "dbstats" :  mongo[CURRENT_DB].command("dbstats"),
+           "collstats" : mongo[CURRENT_DB].command("collstats",CURRENT_COLL),
+           "atlas" : { "a" : 1, "name" : "stuff about atlas connection" }
+    }
+  logger.debug(f"info:{info}")
+  return (dumps(info), 200)
+
 # @app.route('/', methods = ['GET'])
 # #@auth.login_required
 # def get():

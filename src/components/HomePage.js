@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import Movies from './movies';
+import MongoDBInfo from './mongodbinfo';
 
 export default function HomePage() {
 
     return <div>
-
+        <MongoDBInfo />
         <Movies />
         </div>
     }
