@@ -11,7 +11,15 @@ docker run -it -p 8000:80 <repo>/hello-mongodb-app
 Your app will be running on [http://localhost:8000](http://localhost:8000)
 
 
-# leafygreen-ui-starter-kit
+# hello-mongodb-app
+
+Choose an app to install and it will guide you through the first experience of using MongoDB. Check out the code sample to see how the sample app is put together. Each app has a webpage that will guide you step by step to build the most common features in any app. 
+
+You can download a basic containerized sample app (Cloud-native) connected to the environment you deployed into. Follow the steps to connect your app with Atlas or MongoDB with security. Then add some more basic functions and test it out in the app.
+
+
+
+Built from:
 
 A (slightly) opinionated starter kit for making applications with [@leafygreen-ui](https://github.com/mongodb/leafygreen-ui).
 
