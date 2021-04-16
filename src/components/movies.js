@@ -12,8 +12,8 @@ class Movies extends React.Component {
         console.log("Movies state: " + this.state)
     }
 
-    componentDidMount() {
-        fetch(this.state.service)
+    UNSAFE_componentWillMount() {
+        fetch(this.state.service+"find")
         .then(res => res.json())
         .then((data) => {
           this.setState({ movies: data })
