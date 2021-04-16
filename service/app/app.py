@@ -100,17 +100,21 @@ def mongodb_info():
 
   set_current_collection()
   try:
+    service='mongodb'
+    if "mongodb.net" in app.config["MONGODB_SRV"] :
+      service='atlas'
+
     info = { "dbstats" :  mongo[CURRENT_DB].command("dbstats"),
             "collstats" : mongo[CURRENT_DB].command("collstats", CURRENT_COLL, scale=1024*1024),
-            "atlas" : { "connectionStringSRV" : app.config["MONGODB_SRV"], "connected": true}
+            "mongodb" : { "connectionStringSRV" : app.config["MONGODB_SRV"], "connected": True, "service": service}
       }
     logger.debug(f"info:{info}")
   except pymongo.errors.ConnectionFailure as e:
     info = { "error" : "Connection Error" ,
-            "atlas": { "connected": false }}      
+            "atlas": { "connected": False }}      
   except pymongo.errors.OperationFailure as e:
     info = { "errmsg" : e.details.get('errmsg', ''),
-            "atlas": { "connected": false }
+            "atlas": { "connected": False }
       }      
   
   return (dumps(info), 200)

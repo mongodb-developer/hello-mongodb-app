@@ -1,6 +1,6 @@
 import React from 'react'
-import { spacing } from '@leafygreen-ui/tokens';
-import { uiColors } from '@leafygreen-ui/palette';
+import { Subtitle } from '@leafygreen-ui/typography';
+import { LogoMark, AtlasLogoMark } from '@leafygreen-ui/logo';
 
 class AtlasStatus extends React.Component {
 
@@ -8,7 +8,7 @@ class AtlasStatus extends React.Component {
         super(props)
         console.log("-----> service url----> " + process.env.REACT_APP_MOVIES_SERVICE_URL)
         this.state = {
-            atlas: { 'connected': false} 
+            mongodb: { 'connected': false} 
             ,service: process.env.REACT_APP_MOVIES_SERVICE_URL
         };
         console.log("AtlasStatus state: " + this.state)
@@ -18,15 +18,27 @@ class AtlasStatus extends React.Component {
         fetch(this.state.service+"/mongodb-info")
         .then(res => res.json())
         .then((data) => {
-          this.setState({ atlas: data.atlas })
+          this.setState({ mongodb: data.mongodb })
         })
         .catch(console.log)
     }
 
 
     render() {
+      const renderMongoDBLogo = () => {
+        if (this.state.mongodb.service==='atlas') {
+          return ( <AtlasLogoMark style={{display: 'flex', 'marginLeft': 'auto'}}></AtlasLogoMark>)
+        } else {
+          return (<LogoMark style={{display: 'flex', 'marginLeft': 'auto'}}></LogoMark>)
+        }
+      }
+      
       return (
-        <div style={{'margin-left': 'auto'}}> { this.state.atlas.connected ? 'connected' : 'disconnected'}
+        <div style={{display: 'flex', 'marginLeft': 'auto'}}>
+        
+        {renderMongoDBLogo()}        
+        <Subtitle style={{ 'marginLeft': '15px', 'color': '#09804C'}} > { this.state.mongodb.connected ? 'connected' : 'disconnected'}
+        </Subtitle>
         </div>
       )
     }

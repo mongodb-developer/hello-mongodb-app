@@ -59,7 +59,6 @@ const Header = styled.header`
 const Title = styled.h1`
   font-weight: bold;
   color: ${uiColors.green.base};
-  display: flex;
 `;
 
 const List = styled.ul`
