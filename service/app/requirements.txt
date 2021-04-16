@@ -3,4 +3,4 @@ flask-httpauth
 pymongo[tls]
 dnspython
 kubernetes
-
+flask_cors
