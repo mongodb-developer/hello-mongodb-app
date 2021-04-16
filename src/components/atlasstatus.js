@@ -8,7 +8,7 @@ class AtlasStatus extends React.Component {
         super(props)
         console.log("-----> service url----> " + process.env.REACT_APP_MOVIES_SERVICE_URL)
         this.state = {
-            atlas: {} 
+            atlas: { 'connected': false} 
             ,service: process.env.REACT_APP_MOVIES_SERVICE_URL
         };
         console.log("AtlasStatus state: " + this.state)
@@ -26,7 +26,7 @@ class AtlasStatus extends React.Component {
 
     render() {
       return (
-        <div style={{'margin-left': 'auto'}}>connected { this.state.atlas.connected }
+        <div style={{'margin-left': 'auto'}}> { this.state.atlas.connected ? 'connected' : 'disconnected'}
         </div>
       )
     }
