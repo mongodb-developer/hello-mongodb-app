@@ -102,13 +102,16 @@ def mongodb_info():
   try:
     info = { "dbstats" :  mongo[CURRENT_DB].command("dbstats"),
             "collstats" : mongo[CURRENT_DB].command("collstats", CURRENT_COLL, scale=1024*1024),
-            "atlas" : { "connectionStringSRV" : app.config["MONGODB_SRV"]}
+            "atlas" : { "connectionStringSRV" : app.config["MONGODB_SRV"], "connected": true}
       }
     logger.debug(f"info:{info}")
   except pymongo.errors.ConnectionFailure as e:
-    info = { "error" : "Connection Error" }      
+    info = { "error" : "Connection Error" ,
+            "atlas": { "connected": false }}      
   except pymongo.errors.OperationFailure as e:
-    info = { "errmsg" : e.details.get('errmsg', '') }      
+    info = { "errmsg" : e.details.get('errmsg', ''),
+            "atlas": { "connected": false }
+      }      
   
   return (dumps(info), 200)
 

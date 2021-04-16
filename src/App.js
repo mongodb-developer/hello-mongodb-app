@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-do
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import SearchPage from './components/SearchPage';
+import AtlasStatus from './components/atlasstatus';
 
 import { Logo, AtlasLogoMark } from '@leafygreen-ui/logo';
 import { CollapsedSideNavItem, SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
@@ -58,6 +59,7 @@ const Header = styled.header`
 const Title = styled.h1`
   font-weight: bold;
   color: ${uiColors.green.base};
+  display: flex;
 `;
 
 const List = styled.ul`
@@ -174,8 +176,9 @@ function App() {
             <div className="content">
                   <Container>
                     <Title>
-                <AtlasLogoMark />
+                      <AtlasLogoMark />
                         Hello MongoDB App
+                      <AtlasStatus />
                     </Title>
 
                     <Navigation>
