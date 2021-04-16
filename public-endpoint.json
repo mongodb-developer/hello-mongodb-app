@@ -1,0 +1,4 @@
+{
+    "containerName": "hello-mongodb-app",
+    "containerPort": 80
+}

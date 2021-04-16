@@ -8,7 +8,7 @@ class AtlasStatus extends React.Component {
         super(props)
         console.log("-----> service url----> " + process.env.REACT_APP_MOVIES_SERVICE_URL)
         this.state = {
-            mongodb: { 'connected': false} 
+            mongodb: { 'connected': false}
             ,service: process.env.REACT_APP_MOVIES_SERVICE_URL
         };
         console.log("AtlasStatus state: " + this.state)
@@ -32,11 +32,11 @@ class AtlasStatus extends React.Component {
           return (<LogoMark style={{display: 'flex', 'marginLeft': 'auto'}}></LogoMark>)
         }
       }
-      
+
       return (
         <div style={{display: 'flex', 'marginLeft': 'auto'}}>
-        
-        {renderMongoDBLogo()}        
+
+        {renderMongoDBLogo()}
         <Subtitle style={{ 'marginLeft': '15px', 'color': '#09804C'}} > { this.state.mongodb.connected ? 'connected' : 'disconnected'}
         </Subtitle>
         </div>

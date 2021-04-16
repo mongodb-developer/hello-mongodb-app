@@ -117,7 +117,7 @@ function App() {
 
         <div className="grid-container">
             <SideNav aria-label="LeafyGreen Design System"
-                     className={css`z-index: 1;`}>
+                     className={css`z-index: 1;`} style={{ marginLeft: spacing[2], marginRight: spacing[2] }}>
                     <Title>
                 <LogoMark />
           <span style={{ margin: spacing[2] }}></span>
@@ -188,7 +188,7 @@ function App() {
                         <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAxOCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8Y2lyY2xlIGN4PSI5IiBjeT0iOSIgcj0iOSIgZmlsbD0iIzVENkM3NCIvPgogIDxwYXRoIGQ9Ik0xMi40NzYgMTEuODAyVjEwLjI2MkgxMS4yMTZWNC41MDhIOS4xMDJMNS4xODIgMTAuMTA4QzUuMTgyIDEwLjEwOCA1LjE1NCAxMS40OTQgNS4xNTQgMTEuODE2SDkuMDA0VjE0SDExLjIxNlYxMS44MDJIMTIuNDc2Wk05LjAxOCAxMC4yNjJINi43NjRMOS4wMTggNi45MTZWMTAuMjYyWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg==" class="css-15z1i9v e1kvg3ii3">
                       </img>
                       </span>
-                        Add Charts.
+                        Get Charts.
                         </Label>
                         <Body style={{ margin: spacing[2] }}>
       Visualize the data from your sample app with MongoDB Charts in Atlas.
@@ -207,7 +207,8 @@ function App() {
                       <AtlasStatus />
                     </Title>
 
-                    <Navigation>
+                    <Navigation style={{ marginLeft: spacing[2] }}>
+
                       <List>
                         <ListItem>
                           <NavigationLink exact to="/">All Movies</NavigationLink>

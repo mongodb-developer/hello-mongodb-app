@@ -1,0 +1,16 @@
+{
+    "hello-mongodb-app": {
+        "image": ":hello-mongodb-app.hello-mongodb-app.5",
+        "ports": {
+            "80": "HTTP"
+        }
+    
+    },
+    "hello-mongodb-service": {
+        "image": ":hello-mongodb-app.hello-mongodb-service.4",
+        "ports": {
+            "5274": "HTTP"
+        }
+    
+    }
+}

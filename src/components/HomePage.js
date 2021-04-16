@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core';
 import Movies from './movies';
+import { spacing } from '@leafygreen-ui/tokens';
 import MongoDBInfo from './mongodbinfo';
 
 export default function HomePage() {
